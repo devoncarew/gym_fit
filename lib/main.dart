@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(new MyApp());
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: new MyHomePage(title: 'Gym Fit'),
+      //debugShowMaterialGrid: true,
     );
   }
 }
@@ -29,11 +31,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+//  void _incrementCounter() {
+//    setState(() {
+//      _counter++;
+//    });
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Text(
-              'You have pushed the button this many times:',
-            ),
+            new Text('You have pushed the button:'),
             new Text(
               '$_counter',
               style: Theme.of(context).textTheme.display1,
@@ -55,10 +55,22 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: new Icon(Icons.add),
+      drawer: new Drawer(
+        child: new ListView(
+          primary: false,
+          children: [
+            new DrawerHeader(child: new Text('Gym Fit')),
+            new Divider(),
+            new ListTile(title: new Text('jhghj jhgj hgjhg jhgjh')),
+            new ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Send feedback'),
+              onTap: () {
+                launch('https://github.com/flutter/flutter/issues/new');
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
